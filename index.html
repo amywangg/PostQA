@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset = "UTF-8">
+      <title>Hello World!</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+   </head>
+   <div class = "container">
+    
+    </div>
+  <body>
+    <div class="container">
+      <div class="jumbotron">
+            <h1>Fundamental QA Tool</h1>
+        <h4>This applications this application takes a URL and sends a POST request </h4>
+      </div>
+
+       <div class="panel panel-primary">
+        <div class="panel-heading">POST Request</div>
+        <div class="panel-body">
+            <label>POST URL:</label>
+              <input type="text" class="form-control" id="getPost" placeholder="POST URL ... " value="https://ly0ugtyr60.execute-api.us-east-1.amazonaws.com/dev/">
+              <br>
+              <label>Variables:</label>
+              <input type="text" class="form-control" id="getVar" placeholder="Enter variables separated by a space">
+            
+              <br>
+            <button type="submit" class="btn btn-primary" id="sendPost">Send</button>
+            <script src="views.js"></script>
+        </div>
+          <div class="panel-body" id="postResult">
+
+                <h1 id="test">Results</h1>
+
+            <ul>
+                <li></li>
+            </ul>
+          </div>
+          
+
+        </div>
+      </div>
+
+      <!-- Insert this line above script imports  -->
+<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"
+    ></script>
+    <script>window.$ = window.jQuery = require('jquery');</script>
+    
+</body>
+</html>
