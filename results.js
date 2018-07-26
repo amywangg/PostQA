@@ -32,10 +32,15 @@ var arrayToTable = function(header, data, options = {}) {
     }
     rows.push("</tbody>")
     // add all the rows
+    table.append('<TableHeaderColumn dataField="any" dataFormat={indexN}>#</TableHeaderColumn>')
     for (i = 0; i < (data.length/header.length)+ 1; i++) {
       table.append(rows[i]);
     };
     return table;
   }
+  function indexN(cell, row, enumObject, index) {
+    return ('<div>{index+1}</div>') 
+}
+
   
   

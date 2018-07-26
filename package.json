@@ -7,8 +7,10 @@
     "bootstrap": "^4.1.2",
     "bower": "^1.8.4",
     "electron": "^2.0.5",
+    "fs": "0.0.1-security",
     "jquery": "^3.3.1",
     "jsonfile": "^4.0.0",
+    "remote": "^0.2.6",
     "request": "^2.87.0"
   },
   "devDependencies": {},

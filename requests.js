@@ -1,7 +1,3 @@
-let jQuery = require('jquery')
-let $ = require('jquery')
-const request = require('request')
-
 // connect the results 
 $.getScript('results.js', function() {
     console.log('Load was performed.');

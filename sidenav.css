@@ -46,3 +46,32 @@
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
 }
+
+.reqbody{
+    background: transparent;
+}    
+
+#addrow, #delete{
+    padding-left: 0;
+}
+
+.keyIn,.valueIn{
+    width:80%;
+    background: transparent;
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom: 1.5px solid white;
+}
+.keyIn{
+    margin-left: 30px;
+    margin-right:0px;
+}
+.keytd{
+    padding-left: 30px;
+}
+
+#delete{
+    padding-left: 0;
+    
+}

@@ -14,76 +14,122 @@
   </head>
 
   <body>
+<script> let jQuery = require('jquery'); let $ = require('jquery') ;const request = require('request');const {dialog} = require('electron').remote;</script>
+    <div class="header">
+      <h1 style="text-align: center; font-size: 5em; font-weight: 500">POST QA</h1>
+    </div>
 
-        <div class="header">
-                <h1 style="text-align: center; font-size: 5em; font-weight: 500">POST QA</h1>
-              </div>
-          
-        <div id="mySidenav" class="sidenav">
-                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-                <a href="#">About</a>
-                <a href="#">Services</a>
-                <a href="#">Clients</a>
-                <a href="#">Contact</a>
-              </div>
-              
-              <div id="main">
-                <span style="font-size:30px;cursor:pointer;color: #252422" onclick="openNav()">&#9776; Settings</span>
-              
-                  
-                      <div class="panel panel-primary" style="border-radius: 0; border:none">
-                  
-                        <div class="panel-heading" style="border-radius: 0; border:none; background: #403D39; margin-top: 10px;">
-                          <div class="container">
-                            <h1>POST Request</h1>
-                          </div>
-                        </div>
-                        <div class="panel-body" style="border-radius: 0; border:none">
-                          <div class="container">
-                            <label>POST URL:</label>
-                            <input type="text" class="form-control" id="getPost" placeholder="POST URL ... " value="https://ly0ugtyr60.execute-api.us-east-1.amazonaws.com/dev/">
-                          </div>
-                          <div class="container">
-                            <label>Variables:</label>
-                            <input type="text" class="form-control" id="getVar" placeholder="Enter variables separated by a space">
-                          </div>
-                          <div class="container">
-                            <button type="submit" class="btn btn-lg btn-block btn-override" id="sendPost">Send</button>
-                          </div>
-                        </div>
-                        <script src="requests.js"></script>
-                      </div>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    
+      <!-- FILE IO -->
+      <a href="#">Config File</a>
+     
+      <div>
+            <table>
+                    <td class="keytd" style="color: whitesmoke"><h4 style="font-weight:400">Path: </h4></td>
+                  <tr>
+                      <td><a href="#" id="uploadCon" onclick="addFile()">Upload</a></td>
+                      <td><a href="#" id="exportCon">Export</a></div></td>
+                    </tr>
+                </table>
 
-            <!-- Panel for notifications -->
-            <div class="panel panel-primary info" style="border-radius: 0; border:none">
-                    <div class="panel-heading notifications" style="border-radius: 0; border:none; background: #403D39">
-                      <h3 id="alert" style="font-weight: 300"></h3>
-                    </div>
-                </div>     
+      </div>
 
-                      <div class="panel panel-primary results">
-                        <div class="panel-heading">
-                          <h1 id="test">Results</h1>
-                        </div>
-                        <div class="panel-body table-responsive " id="postResult">
-                  
-                        </div>
-              </div>
-      
-  
+      <!-- Request body from file -->
+      <a href="#">Request Body</a>
+      <script src="settings.js"></script>
+      <div id="reqDiv">
+      <table id="myTable">
+        <thead>
+          <tr>
+            <td class="keytd" style="color: whitesmoke; margin-bottom: 10px;"><h4 style="font-weight:400">Key</h4></td>
+            <td class="valuetd" style="color: whitesmoke"><h4 style="font-weight:400">Value</h4></td>
+          </tr>
+        </thead>
+        <tbody class="reqbody">
+          <tr>
+            <td>
+              <input type="text" name="Key" class="form-control keyIn" style="margin-bottom:10px; margin-top:5px"  />
+            </td>
+            <td>
+              <input type="text" name="Value" class="form-control valueIn" style="margin-bottom:10px ; margin-top:5px" />
+            </td>
+            <td></td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td style="text-align: left;">
+              <a href="#" id="save">Save</a>
+            </td>
+            <td style="text-align: left; margin-left: 0;">
+              <a href="#" id="addrow" onclick="addRow()">Add</a>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    </div>
+
+    <div id="main">
+      <span style="font-size:30px;cursor:pointer;color: #252422" onclick="openNav()">&#9776; Settings</span>
+
+
+      <div class="panel panel-primary" style="border-radius: 0; border:none">
+
+        <div class="panel-heading" style="border-radius: 0; border:none; background: #403D39; margin-top: 10px;">
+          <div class="container">
+            <h1>POST Request</h1>
+          </div>
+        </div>
+        <div class="panel-body" style="border-radius: 0; border:none">
+          <div class="container">
+            <label>POST URL:</label>
+            <input type="text" class="form-control" id="getPost" placeholder="POST URL ... " value="https://ly0ugtyr60.execute-api.us-east-1.amazonaws.com/dev/">
+          </div>
+          <div class="container">
+            <label>Variables:</label>
+            <input type="text" class="form-control" id="getVar" placeholder="Enter variables separated by a space">
+          </div>
+          <div class="container">
+            <button type="submit" class="btn btn-lg btn-block btn-override" id="sendPost">Send</button>
+          </div>
+        </div>
+        <script src="requests.js"></script>
+      </div>
+
+      <!-- Panel for notifications -->
+      <div class="panel panel-primary info" style="border-radius: 0; border:none">
+        <div class="panel-heading notifications" style="border-radius: 0; border:none; background: #403D39">
+          <h3 id="alert" style="font-weight: 300"></h3>
+        </div>
+      </div>
+
+      <div class="panel panel-primary results">
+        <div class="panel-heading">
+          <h1 id="test">Results</h1>
+        </div>
+        <div class="panel-body table-responsive " id="postResult">
+
+        </div>
+      </div>
+
+
       <!-- Insert this line above script imports  -->
       <script>
         if (typeof module === 'object') {
           window.module = module;
           module = undefined;
         }
+
       </script>
       <script src="sidenav.js"></script>
       <!-- jQuery library -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
       <!-- Popper JS -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 
       <!-- Latest compiled JavaScript -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
