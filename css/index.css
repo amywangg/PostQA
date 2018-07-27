@@ -1,0 +1,142 @@
+body{
+    background:#EDF2F4;
+}
+label{
+    font-size: 2em;
+    font-weight: 500;
+    margin:0;
+}
+input[type='text']{
+    font-size: 15px;
+    color: grey;
+    border-radius: 0;
+}
+.btn-override{
+    background-color: #EF233C;
+    font-family: Helvetica sans-serif;
+    color: white;
+    opacity: 0.9;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.btn-override:hover, .btn-override:visited, .btn-override:focus{
+    background-color: #EF233C;
+    color: white;
+    opacity: 1;
+}
+#test{
+    color: white;
+}
+.panel-body{
+    border:none;
+    background-color: #8D99AE;
+    padding:20 40 40 40;
+}
+.table-hover > tr:hover {
+    background-color:#59709B ;
+  }
+#getPost, #getVar{
+    margin-top: 0.5em ;
+    margin-bottom: 1em ;
+}  
+  .table{
+      border-radius: 5px;
+      background: #3F5171;
+      border-color: white;
+  }
+
+table, tr, td {
+    border: none;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+td {
+    border: none;
+    font-size: 1.2em;
+    font-weight: 200;
+}
+th {
+    border: none;
+    font-size: 1.5em;
+    font-weight: 600;
+}
+  .results{
+      display:none;
+  }
+  .info{
+    display:none;
+    text-align: center;
+}
+div#postResult{
+    height: 1000px;
+}
+.table-borderless > tbody > tr > td,
+.table-borderless > tbody > tr > th,
+.table-borderless > tfoot > tr > td,
+.table-borderless > tfoot > tr > th,
+.table-borderless > thead > tr > td,
+.table-borderless > thead > tr > th {
+    border: none;
+}
+.table-borderless > th{
+    border: 1px solid whitesmoke;
+}
+
+tbody {
+    overflow-y: auto;
+  }
+
+  input{
+	background: #f7f7f7;
+	width: 100%;
+	padding: 13px 13px 13px 20px;
+	color:#2980b9;
+    box-shadow: none;
+}
+input:focus {
+	background: white;
+	border: 3px solid #2980b9;
+	outline:0;
+	color:#2980b9;
+}
+label{
+    color: white;
+}
+#main::-webkit-scrollbar-track
+{
+	background-color: #F5F5F5;
+}
+
+#main::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+#main::-webkit-scrollbar-thumb
+{
+	background-color: #2B2D42;
+}
+#postResult::-webkit-scrollbar-track
+{
+	background-color: #8D99AE;
+}
+
+#postResult::-webkit-scrollbar
+{
+    top: 5px;
+	width: 10px;
+    background-color: #8D99AE;
+    opacity: 0.3;
+}
+
+#postResult::-webkit-scrollbar-thumb
+{
+	background-color: #2B2D42;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}

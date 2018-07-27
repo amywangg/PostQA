@@ -9,51 +9,53 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="sidenav.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/sidenav.css">
   </head>
 
   <body>
 <script> let jQuery = require('jquery'); let $ = require('jquery') ;const request = require('request');const {dialog} = require('electron').remote;</script>
-    <div class="header">
-      <h1 style="text-align: center; font-size: 5em; font-weight: 500">POST QA</h1>
-    </div>
+    
 
     <div id="mySidenav" class="sidenav">
+        
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     
       <!-- FILE IO -->
-      <a href="#">Config File</a>
+      <a href="#" id="configA option" onclick="show('#configDiv', '#configA')">Config File</a>
      
-      <div>
+      <div id="configDiv" style="display: none">
             <table>
-                    <td class="keytd" style="color: whitesmoke"><h4 style="font-weight:400">Path: </h4></td>
+                    <td class="keytd" style="color: whitesmoke"><h3 style="font-weight:400">File Name: </h3>
+                        
+                    </td>
+                    <td  class="keytd" style="color: whitesmoke"><h3 id="pathName" style="font-weight:400"></h3></td>
                   <tr>
-                      <td><a href="#" id="uploadCon" onclick="addFile()">Upload</a></td>
-                      <td><a href="#" id="exportCon">Export</a></div></td>
+                      <td><a href="#" id="uploadCon action" onclick="addFile()">Upload</a></td>
+                      <td><a href="#" id="exportCon action" onclick="exportFile()">Export</a></td>
                     </tr>
-                </table>
+        </table>
 
       </div>
 
       <!-- Request body from file -->
-      <a href="#">Request Body</a>
-      <script src="settings.js"></script>
-      <div id="reqDiv">
+      <a href="#" id="reqA option" onclick="show('#reqDiv', '#reqA') ;refresh()">Request Body</a>
+     
+      <div id="reqDiv" style="display: none">
       <table id="myTable">
         <thead>
           <tr>
-            <td class="keytd" style="color: whitesmoke; margin-bottom: 10px;"><h4 style="font-weight:400">Key</h4></td>
-            <td class="valuetd" style="color: whitesmoke"><h4 style="font-weight:400">Value</h4></td>
+            <td class="keytd" style="color: whitesmoke; margin-bottom: 10px;"><h3 style="font-weight:400">Key</h3></td>
+            <td class="valuetd" style="color: whitesmoke"><h3 style="font-weight:400">Value</h3></td>
           </tr>
         </thead>
         <tbody class="reqbody">
           <tr>
             <td>
-              <input type="text" name="Key" class="form-control keyIn" style="margin-bottom:10px; margin-top:5px"  />
+              <input type="text" name="Key" class="form-control keyIn key1" onkeypress="return AvoidSpace(event)" style="margin-bottom:10px; margin-top:5px"  />
             </td>
             <td>
-              <input type="text" name="Value" class="form-control valueIn" style="margin-bottom:10px ; margin-top:5px" />
+              <input type="text" name="Value" class="form-control valueIn val1" onkeypress="return AvoidSpace(event)" style="margin-bottom:10px ; margin-top:5px" />
             </td>
             <td></td>
           </tr>
@@ -61,24 +63,72 @@
         <tfoot>
           <tr>
             <td style="text-align: left;">
-              <a href="#" id="save">Save</a>
+              <a href="#" id="save action" onclick="saveBody()">Save</a>
             </td>
             <td style="text-align: left; margin-left: 0;">
-              <a href="#" id="addrow" onclick="addRow()">Add</a>
+              <a href="#" id="addrow action" onclick="addRow()">Add</a>
             </td>
           </tr>
         </tfoot>
       </table>
     </div>
+
+    <!-- SETTINGS FOR VARIABLE VALUES -->
+    <a href="#" id="varA option" onclick="show('#varDiv', '#varA' )">Variables</a>
+    <div id="varDiv"  style="display: none">
+        <table>
+            <tr>
+                    <td  class="keytd" style="color: whitesmoke"><h3 style="margin-bottom:0;font-weight:400;width: 20px;">Key</h3></td>
+                <td>
+                    <input type="text" name="Var" class="form-control varIn var1" onkeypress="return AvoidSpace(event)" style="margin-bottom:10px ; margin-top:5px" />
+                </td>
+            </tr>
+                
+                <tr> <td style="text-align: left;">
+                        <a href="#" id="save action" onclick="saveBody()">Save</a>
+                      </td>
+                </tr>
+        </table>
     </div>
 
-    <div id="main">
-      <span style="font-size:30px;cursor:pointer;color: #252422" onclick="openNav()">&#9776; Settings</span>
+     <!-- SETTINGS FOR REQBODY -->
+     <a href="#" id="custA option" onclick="show('#customDiv', '#custA')">Custom</a>
+     <div id="customDiv"  style="display: none">
+            <table id="cusTable">
+                    <tr>
+                        <td  class="keytd" style="color: whitesmoke"><h3 class='customText' style="margin-bottom:0;font-weight:400; margin-right: 25px;">No Request Body</h3></td>
+                        <td><div class="checkbox" id="custom"  onclick="check('.reqCheck')"><h1 class="reqCheck"></h1></div></td>
+                    </tr>
+                    <tr>
+                        <td  class="keytd" style="color: whitesmoke"><h3 class='customText' style="margin-bottom:0;font-weight:400">No Variables</h3></td>
+                        <td><div class="checkbox" id="var" onclick="check('.varCheck')"><h1 class="varCheck"></h1></div></td>
+                    </tr>
+                    <tr>
+                        <td  class="keytd" style="color: whitesmoke"><h3 class='customText' style="margin-bottom:0;font-weight:400">Custom Body</h3></td>
+                        <td><div class="checkbox" id="reqbody" onclick="check('.customCheck')"><h1 class="customCheck"></h1></div></td>
+                    </tr>
 
+                    <tr> <td style="text-align: left;">
+                            <a href="#" id="save action" onclick="saveBody()">Save</a>
+                          </td>
+                    </tr>
+                </table>  
+     </div>
+</div>
+
+    
+    <!-- MAIN PANE WITH ALL THE RESULTS -->
+    <div class="header" id="postqa" style="transition: margin-left .5s">
+            <h1 style="text-align: center; font-size: 5em; font-weight: 500; 
+            transition: margin-left .5s; ">POST QA</h1>
+    </div>
+    <!-- MAIN PANE WITH ALL THE RESULTS -->
+    <div id="main">
+      <span style="font-size:30px;cursor:pointer;color: #242537; " onclick="openNav()">&#9776; Settings</span>
 
       <div class="panel panel-primary" style="border-radius: 0; border:none">
 
-        <div class="panel-heading" style="border-radius: 0; border:none; background: #403D39; margin-top: 10px;">
+        <div class="panel-heading" style="border-radius: 0; border:none; background: #2B2D42; margin-top: 10px;">
           <div class="container">
             <h1>POST Request</h1>
           </div>
@@ -86,17 +136,16 @@
         <div class="panel-body" style="border-radius: 0; border:none">
           <div class="container">
             <label>POST URL:</label>
-            <input type="text" class="form-control" id="getPost" placeholder="POST URL ... " value="https://ly0ugtyr60.execute-api.us-east-1.amazonaws.com/dev/">
+            <input type="text" class="form-control" id="getPost" placeholder="POST URL ... " >
           </div>
           <div class="container">
             <label>Variables:</label>
             <input type="text" class="form-control" id="getVar" placeholder="Enter variables separated by a space">
           </div>
           <div class="container">
-            <button type="submit" class="btn btn-lg btn-block btn-override" id="sendPost">Send</button>
+            <button type="submit" class="btn btn-lg btn-block btn-override" id="sendPost" style="font-family:inherit; font-size: 2em; z-index: -1;">Send</button>
           </div>
         </div>
-        <script src="requests.js"></script>
       </div>
 
       <!-- Panel for notifications -->
@@ -106,15 +155,15 @@
         </div>
       </div>
 
-      <div class="panel panel-primary results">
-        <div class="panel-heading">
+      <div class="results">
+        <div class="panel-heading" style="border-radius: 0; border:none; background: #2B2D42; margin-top: 10px;">
           <h1 id="test">Results</h1>
         </div>
         <div class="panel-body table-responsive " id="postResult">
 
         </div>
       </div>
-
+</div>
 
       <!-- Insert this line above script imports  -->
       <script>
@@ -122,9 +171,11 @@
           window.module = module;
           module = undefined;
         }
-
       </script>
-      <script src="sidenav.js"></script>
+      <script src="js/views.js"></script>
+       <script src="js/settings.js"></script>
+      <script src="js/requests.js"></script>
+      <script src="js/sidenav.js"></script>
       <!-- jQuery library -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
