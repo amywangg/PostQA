@@ -138,3 +138,9 @@
 #cusTable{
     padding-left:100px;
 }
+div h1{
+    color: white;
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 3px;
+}

@@ -2,6 +2,7 @@ var fs = require('fs');
     // Global variables
     var counter=2, keys, values, path, data;
     startup();
+    setTimeout(displayBody, 2000);
     function startup (){
         fs.readFile('config/defaultconfig.json', 'utf8', function(err, data){
             if (err){
@@ -13,7 +14,26 @@ var fs = require('fs');
                 // Display the selected file name
                 $('#pathName').text(filename)
                 path = obj.path
-                displayBody()
+                // Settings for custom option
+                if(obj.request == true){
+                    $('.reqCheck').text('X')
+                    $('#reqA').fadeOut('slow')
+                    $('#reqDiv').css('display','none')
+                }else { $('#reqA').fadeIn('slow');  $('.customCheck').text('')}
+                if(obj.variable == true){
+                    $('.varCheck').text('X')
+                    $('.variableDiv').fadeOut('slow')
+                    $('#varDiv').css('display','none')
+                }else{
+                    $('.variableDiv').fadeIn('slow')
+                }
+                if(obj.custom == true){
+                    $('.customCheck').text('X')
+                    $('.reqCheck').text('X')
+                    $('.customBodyDiv').fadeIn('slow')
+                }else{
+                    $('.customBodyDiv').fadeOut('slow')
+                }
             }
         });
     }
@@ -69,7 +89,19 @@ var fs = require('fs');
     function saveConfig(){
         var url = $('#getPost').val()
         var path = "config/" + $('#pathName').text();
-        var obj = { path: path, url: url}
+        requestBody = false; variable=false; custom=false;
+        if($('.reqCheck').text()=='X'){
+            requestBody = true;
+        }
+        if($('.varCheck').text()=='X'){
+            variable = true;
+        }
+        // for custom body
+        if($('.customCheck').text()=='X'){
+            requestBody = true;
+            custom = true;
+        }
+        var obj = { path: path, url: url, request: requestBody, variable:variable, custom:custom}
     
         fs.writeFile('config/defaultconfig.json', "");
         fs.writeFile('config/defaultconfig.json', JSON.stringify(obj));
@@ -95,7 +127,8 @@ function infoDiv (message){
     $('#alert').text(message)
     setTimeout(function() {
                 $('.info').fadeOut("slow");}, 2000);
-          }
+}
+
 function addFile (){
            var filepath = dialog.showOpenDialog({
             properties: ['.json']
@@ -121,4 +154,6 @@ function addFile (){
             }
         }); 
     }
+
+
 

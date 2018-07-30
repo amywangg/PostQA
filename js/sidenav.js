@@ -19,6 +19,9 @@ function show(element, text){
 }
 
 function check(element){
+    if(element=='.customCheck' && $(element).text()==''){
+        $('.reqCheck').text('X')
+    }
     if( $(element).text()=='X'){
         $(element).text("")
     } else {
@@ -29,6 +32,7 @@ function check(element){
 function refresh(){
     $(".reqbody").find("tr:gt(0)").remove();
     counter=2;
+    startup()
     displayBody()
 }
 
