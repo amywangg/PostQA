@@ -27,6 +27,15 @@ function check(element){
     } else {
         $(element).text("X")
     }
+    if(element=='.postCheck'){
+        $('.getCheck').text('')
+        $('#reqH1').text('POST Request')
+        $('#reqLabel').text('POST URL:')
+    }else if(element=='.getCheck'){
+        $('.postCheck').text('')
+        $('#reqH1').text('GET Request')
+        $('#reqLabel').text('GET URL:')
+    }
 }
 // refresh the request body panel information
 function refresh(){

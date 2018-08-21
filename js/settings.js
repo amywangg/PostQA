@@ -1,8 +1,10 @@
 var fs = require('fs');
     // Global variables
-    var counter=2, keys, values, path, data;
+    var counter=2, keys, values, path, exObj;
     startup();
     setTimeout(displayBody, 2000);
+
+    // applies all config file's settings
     function startup (){
         fs.readFile('config/defaultconfig.json', 'utf8', function(err, data){
             if (err){
@@ -34,6 +36,18 @@ var fs = require('fs');
                 }else{
                     $('.customBodyDiv').fadeOut('slow')
                 }
+                if(obj.post == true){
+                        $('.postCheck').text('X')
+                        $('.getCheck').text('')
+                        $('#reqH1').text('POST Request')
+                        $('#reqLabel').text('POST URL:')
+                    }else if(obj.get == true){
+                        $('.postCheck').text('')
+                        $('.getCheck').text('X')
+                        $('#reqH1').text('GET Request')
+                        $('#reqLabel').text('GET URL:')
+                    }
+
             }
         });
     }
@@ -79,17 +93,17 @@ var fs = require('fs');
             }
             newobj[varKey] =varVal
             console.log(JSON.stringify(newobj))
+            exObj=JSON.stringify(newobj)
             // clear file contents
             fs.writeFile(path, "");
             fs.writeFile(path, JSON.stringify(newobj));
-
             saveConfig();
     }
 
     function saveConfig(){
         var url = $('#getPost').val()
         var path = "config/" + $('#pathName').text();
-        requestBody = false; variable=false; custom=false;
+        requestBody = false; variable=false; custom=false; post=false; get=false;
         if($('.reqCheck').text()=='X'){
             requestBody = true;
         }
@@ -101,7 +115,15 @@ var fs = require('fs');
             requestBody = true;
             custom = true;
         }
-        var obj = { path: path, url: url, request: requestBody, variable:variable, custom:custom}
+        if($('.postCheck').text()=='X'){
+            post = true;
+            get = false;
+        }
+        if($('.getCheck').text()=='X'){
+            get = true;
+            post = false;
+        }
+        var obj = { path: path, url: url, request: requestBody, variable:variable, custom:custom, post:post,get:get}
     
         fs.writeFile('config/defaultconfig.json', "");
         fs.writeFile('config/defaultconfig.json', JSON.stringify(obj));
@@ -144,9 +166,8 @@ function addFile (){
 
     function exportFile(){
         saveBody();
-        console.log(data)
         var savePath = dialog.showSaveDialog({properties: ['.json']});
-        fs.writeFile(savePath, data, function(err){
+        fs.writeFile(savePath, exObj, function(err){
             if(err){
                 infoDiv("Error");  
             }else {
@@ -155,5 +176,6 @@ function addFile (){
         }); 
     }
 
+   
 
 

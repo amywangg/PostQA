@@ -67,7 +67,7 @@ th {
     display:none;
     text-align: center;
 }
-div#postResult{
+div#getResult{
     height: 1000px;
 }
 .table-borderless > tbody > tr > td,

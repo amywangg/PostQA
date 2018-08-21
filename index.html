@@ -114,13 +114,26 @@
                     </tr>
                 </table>  
      </div>
+
+     <a href="#" id="typeA option" onclick="show('#typeDiv', '#typeA');refresh()">Request Type</a>
+     <div id="typeDiv"  style="display: none">
+      <table id="reqTable">
+        <tr>
+            <td  class="postReq" style="color: whitesmoke"><h3 class='customText' style="margin-bottom:0;font-weight:400; margin-right: 25px;margin-left: 30px;">POST</h3></td>
+            <td><div class="checkbox" id="custom"  onclick="check('.postCheck') ; saveConfig()"><h1 class="postCheck"></h1></div></td>
+  
+            <td  class="postReq" style="color: whitesmoke"><h3 class='customText' style="margin-bottom:0;font-weight:400; margin-right: 25px; margin-left: 30px;">GET</h3></td>
+            <td><div class="checkbox" id="custom"  onclick="check('.getCheck'); saveConfig()"><h1 class="getCheck"></h1></div></td>
+        </tr>
+        </table>
+     </div>
 </div>
 
     
     <!-- MAIN PANE WITH ALL THE RESULTS -->
     <div class="header" id="postqa" style="transition: margin-left .5s">
             <h1 style="text-align: center; font-size: 5em; font-weight: 500; 
-            transition: margin-left .5s; ">POST QA</h1>
+            transition: margin-left .5s; ">Morningstar QA</h1>
     </div>
     <!-- MAIN PANE WITH ALL THE RESULTS -->
     <div id="main">
@@ -130,12 +143,12 @@
 
         <div class="panel-heading" style="border-radius: 0; border:none; background: #2B2D42; margin-top: 10px;">
           <div class="container">
-            <h1>POST Request</h1>
+            <h1 id="reqH1">POST Request</h1>
           </div>
         </div>
         <div class="panel-body" style="border-radius: 0; border:none">
           <div class="container">
-            <label>POST URL:</label>
+            <label id="reqLabel">POST URL:</label>
             <input type="text" class="form-control" id="getPost" placeholder="POST URL ... " >
           </div>
           <div class="container customBodyDiv" style="display: none">

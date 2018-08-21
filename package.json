@@ -7,6 +7,7 @@
     "bootstrap": "^4.1.2",
     "bower": "^1.8.4",
     "electron": "^2.0.5",
+    "electron-packager": "^12.1.0",
     "fs": "0.0.1-security",
     "jquery": "^3.3.1",
     "jsdom": "^11.12.0",
@@ -15,8 +16,11 @@
     "request": "^2.87.0"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "scripts":  {
+    "start": "electron .",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . funqa --overwrite --asar=true --platform=win32 --arch=ia32 --prune=true --out=release-builds --version-string.CompanyName=Morningstar, Inc. --version-string.FileDescription=CE",    
+    "package-linux": "electron-packager . electron-tutorial-app --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds"   
   },
   "author": "Amy Wang",
   "license": "ISC"
